@@ -63,6 +63,7 @@
 
 }
 
+
 .kusto__title:hover:after {
     opacity: 0.6;
     cursor: pointer;
@@ -76,7 +77,6 @@
     margin: 0;
 
 }
-
 
 
 .kusto__button {
@@ -95,6 +95,7 @@
 .kusto__button:hover {
     opacity: 0.6;
     cursor: pointer;
+
 }
 
 .kusto__plus {
@@ -157,7 +158,7 @@
     
 }
 
-@media screen and (max-width: 616px) {
+@media screen and (max-width: 617px) {
     .header__logo {
         width: 103px;
         height: 24px;
