@@ -1,0 +1,133 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+
+.page-wrapper {
+  background-color: #000;
+  font-family: 'Inter', ‘Arial’, sans-serif;  
+}
+
+.page {
+    margin: 0 auto;
+    max-width: 882px;
+    padding: 0 19px;  
+}
+
+.header {
+    padding: 45px 0 41px;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+.kusto__foto {
+    border-radius: 50%;
+    width: 127px;
+    height: 127px;
+    
+}
+
+.kusto {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 36px 0 46px;
+}
+
+.kusto__text {
+    margin-left: 26px;
+}
+
+.kusto__title {
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 56px;
+    color: #fff;
+    margin: 0;
+}
+
+.kusto__subtitle {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #fff;
+    margin: 0;
+
+}
+
+.kusto__block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    align-self: start;
+    margin: 45px 0 0 17px;
+}
+
+.kusto__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 2px;
+    width: 150px;
+    height: 50px;
+    margin-left: auto;  
+}
+
+.kusto__plus {
+    
+    width: 22px;
+    height: 22px;
+}
+
+.card__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    grid-gap: 18px;
+    padding: 0;
+    justify-items: center;
+    list-style-type: none;
+    margin: 0 auto; 
+}
+
+.card__item {
+    display: flex;
+    flex-direction: column;
+    width: 282px;
+    height: 361px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+
+.card__image {
+    width: 282px;
+    height: 282px; 
+    border-radius: 10px 10px 0 0;
+}
+
+.card__title {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0;
+    color: #000;
+}
+
+.card__block {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 20px;
+    
+}
+.footer__author {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #545454;
+    margin-top: 66px;
+}
+
