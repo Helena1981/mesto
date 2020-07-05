@@ -23,4 +23,15 @@ let injob = document.getElementById('input-job');
 inname.setAttribute('value', pageName);
 injob.setAttribute('value', pagejob);
 
+// Записываем введенные значения на страницу
+const saveButton = document.getElementById('savebutt');
 
+ function saveInf() {
+    document.querySelector('.kusto__title').textContent = inname.value;
+    document.querySelector('.kusto__subtitle').textContent = injob.value;
+    togglePopup();
+ }
+
+ saveButton.addEventListener('click', saveInf);
+
+console.log(saveButton);
