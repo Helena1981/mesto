@@ -34,4 +34,4 @@ const saveButton = document.getElementById('savebutt');
 
  saveButton.addEventListener('click', saveInf);
 
-console.log(saveButton);
+

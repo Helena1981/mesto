@@ -1,0 +1,13 @@
+.kusto__title {
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.3;
+    color: #fff;
+    margin: 0;
+    text-overflow: ellipsis;
+    
+    overflow: hidden;
+    
+    display: block;
+        
+    }
