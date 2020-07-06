@@ -14,7 +14,6 @@
 .kusto__button:hover {
     opacity: 0.6;
     cursor: pointer;
-
 }
 
 @media screen and (max-width: 617px) {
@@ -22,6 +21,5 @@
         margin: 0;
         margin-top: 36px;
         width: 282px;
-
     }
 }

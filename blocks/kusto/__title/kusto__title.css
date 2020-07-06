@@ -7,7 +7,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
     display: inline;
-       
 }
 
 @media screen and (max-width: 617px) {

@@ -5,16 +5,14 @@
     transition: .3s all ease;
     }
 
-    .popup__close:hover {
-        opacity: 0.6;
-        cursor: pointer;
-        
-    }
+.popup__close:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
 
-    @media screen and (max-width: 617px) {
-        .popup__close {
-            top: -49px;
-            right: -14px;
-        }
-    
+ @media screen and (max-width: 617px) {
+    .popup__close {
+        top: -49px;
+        right: -14px;
     }
+}

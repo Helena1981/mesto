@@ -6,7 +6,6 @@
 @import url(./__text/kusto__text.css);
 @import url(./__title/kusto__title.css);
 
-
 .kusto {
     display: flex;
     justify-content: flex-start;
