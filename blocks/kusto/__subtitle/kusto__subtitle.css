@@ -4,4 +4,11 @@
     line-height: 1.2;
     color: #fff;
     margin: 0;
+ }
+
+ @media screen and (max-width: 617px) {
+    .kusto__subtitle {
+        font-size: 14px;
+        margin-top: 14px;
     }
+ }

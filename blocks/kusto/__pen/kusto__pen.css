@@ -3,15 +3,20 @@
     background: url(../../../images/line.svg) center center no-repeat;
     width: 22px;
     height: 22px;
-    z-index: 30;
-    position: absolute;
-    top: 18px;
-    left: calc(100% + 17px);
-    
-    }
+    display: inline-block;
+    margin-left: 17px;
+}
 
     
 .kusto__pen:hover {
     opacity: 0.6;
     cursor: pointer;
+}
+
+@media screen and (max-width: 617px) {
+    .kusto__pen {
+        width: 16px;
+        height: 16px;
+        margin: 0;  
+    }
 }

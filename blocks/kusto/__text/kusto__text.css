@@ -1,5 +1,14 @@
 .kusto__text {
     margin-left: 26px;
     max-width: 55%;
-    position: relative;
+    white-space: nowrap; 
+    
+}
+
+@media screen and (max-width: 617px) {
+    .kusto__text {
+        margin: 0;
+        text-align: center;
+        max-width: 80%;
     }
+}

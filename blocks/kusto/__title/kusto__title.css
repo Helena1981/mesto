@@ -5,9 +5,17 @@
     color: #fff;
     margin: 0;
     text-overflow: ellipsis;
-    
     overflow: hidden;
+    display: inline;
+       
+}
+
+@media screen and (max-width: 617px) {
+
+.kusto__title {
+    font-size: 27px;
+    margin-top: 20px;
+    white-space: nowrap;
     
-    display: block;
-        
-    }
+}
+}
