@@ -5,6 +5,8 @@
     height: 22px;
     display: inline-block;
     margin-left: 17px;
+    transition: .3s all ease;
+    
 }
 
 .profile__pen:hover {

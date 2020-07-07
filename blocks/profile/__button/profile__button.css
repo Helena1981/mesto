@@ -6,7 +6,7 @@
     height: 50px;
     margin-left: auto; 
     background: url(../../../images/plus.svg) center center no-repeat; 
-
+    transition: .3s all ease;
 }
 
 .profile__button:hover {

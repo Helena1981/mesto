@@ -12,6 +12,7 @@
 .popup__close:hover {
     opacity: 0.6;
     cursor: pointer;
+    transform: rotate(90deg);
 }
 
  @media screen and (max-width: 617px) {

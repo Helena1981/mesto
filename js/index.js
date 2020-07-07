@@ -20,16 +20,15 @@ function togglePopup() {
 openPopupButton.addEventListener('click', togglePopup);
 closePopupButton.addEventListener('click', togglePopup);
 
-// Записываем введенные значения на страницу
-const saveButton = document.querySelector('.form__button');
 
+const saveButton = document.querySelector('.form__button');
+// Записываем введенные значения на страницу
 function saveInf() {
-    event.preventDefault();
     document.querySelector('.profile__title').textContent = inname.value;
     document.querySelector('.profile__subtitle').textContent = injob.value;
-    
-    popup.classList.toggle('popup_opened');
-    
+    togglePopup();    
 }
-
-saveButton.addEventListener('click', saveInf);
+document.querySelector('.popup__form').addEventListener('submit', (event) => {
+    event.preventDefault()
+    saveInf();
+});
