@@ -1,4 +1,4 @@
-.kusto__subtitle {
+.profile__subtitle {
     font-weight: normal;
     font-size: 18px;
     line-height: 1.2;
@@ -7,7 +7,7 @@
  }
 
  @media screen and (max-width: 617px) {
-    .kusto__subtitle {
+    .profile__subtitle {
         font-size: 14px;
         margin-top: 14px;
     }

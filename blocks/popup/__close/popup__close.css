@@ -1,9 +1,13 @@
 .popup__close {
     position: absolute;
-    top: -45px;
-    right: -48px;
+    top: -34px;
+    right: -36px;
     transition: .3s all ease;
-    }
+    background: url(../../../images/crest.svg) no-repeat;
+    width: 35px;
+    height: 35px;
+    border: 0;
+}
 
 .popup__close:hover {
     opacity: 0.6;
@@ -12,7 +16,7 @@
 
  @media screen and (max-width: 617px) {
     .popup__close {
-        top: -49px;
-        right: -14px;
+        top: -37px;
+        right: 0;
     }
 }

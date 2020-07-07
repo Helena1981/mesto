@@ -1,10 +1,10 @@
-const openPopupButton = document.querySelector('.kusto__pen');
+const openPopupButton = document.querySelector('.profile__pen');
 const closePopupButton = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
 
 // Берём заголовок и подзаголовок на странице
-let pageName = document.querySelector('.kusto__title').textContent;
-let pagejob = document.querySelector('.kusto__subtitle').textContent;
+let pageName = document.querySelector('.profile__title').textContent;
+let pagejob = document.querySelector('.profile__subtitle').textContent;
 
 // Берём текст из полей ввода 
 let inname = document.querySelectorAll('.form__input')[0];
@@ -25,8 +25,8 @@ closePopupButton.addEventListener('click', togglePopup);
 const saveButton = document.querySelector('.form__button');
 
 function saveInf() {
-    document.querySelector('.kusto__title').textContent = inname.value;
-    document.querySelector('.kusto__subtitle').textContent = injob.value;
+    document.querySelector('.profile__title').textContent = inname.value;
+    document.querySelector('.profile__subtitle').textContent = injob.value;
     togglePopup();
 }
 

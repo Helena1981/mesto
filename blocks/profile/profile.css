@@ -1,0 +1,20 @@
+@import url(./__button/profile__button.css);
+@import url(./__foto/profile__foto.css);
+@import url(./__pen/profile__pen.css);
+@import url(./__subtitle/profile__subtitle.css);
+@import url(./__text/profile__text.css);
+@import url(./__title/profile__title.css);
+
+.profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 36px 0 46px;
+}
+
+@media screen and (max-width: 617px) {
+    .profile {
+        flex-direction: column;
+        padding: 38px 0 36px; 
+    }
+}
