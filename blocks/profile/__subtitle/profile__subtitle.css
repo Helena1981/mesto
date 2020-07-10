@@ -3,7 +3,7 @@
     font-size: 18px;
     line-height: 1.2;
     color: #fff;
-    margin: 0;
+    margin: 16px 0 0;
  }
  @media screen and (max-width: 720px) {
     .profile__subtitle {
@@ -13,6 +13,6 @@
  @media screen and (max-width: 617px) {
     .profile__subtitle {
         font-size: 14px;
-        margin-top: 14px;
+        margin: 14px 0 0;
     }
  }
