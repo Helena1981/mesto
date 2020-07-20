@@ -62,37 +62,37 @@ const initialCards = [
 
 // ---------
 // Работающий код на одну карточку 
-const cardTemplate = document.querySelector('#initItem').content;
-const cardOnline = document.querySelector('.card__items');
-let cardElement = cardTemplate.cloneNode(true);
+// const cardTemplate = document.querySelector('#initItem').content;
+// const cardOnline = document.querySelector('.card__items');
+// let cardElement = cardTemplate.cloneNode(true);
 
-cardElement.querySelector('.card__image').src = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg';
-cardElement.querySelector('.card__title').textContent = 'Архыз';
+// cardElement.querySelector('.card__image').src = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg';
+// cardElement.querySelector('.card__title').textContent = 'Архыз';
 
-cardOnline.append(cardElement);
+// cardOnline.append(cardElement);
 // ---------
 
 
 
-// // Работающий код на все карточки
-// const cardTemplate = document.querySelector('#initItem').content; //Берём template
-// const cardOnline = document.querySelector('.card__items'); //Берём элемент, внутрь которого будет вставлять код из template
+// Работающий код на все карточки
+const cardTemplate = document.querySelector('#initItem').content; //Берём template
+const cardOnline = document.querySelector('.card__items'); //Берём элемент, внутрь которого будет вставлять код из template
 
-// function cardRender (lin, nam) { //Объявляем функциюс аргументами
-//     let cardElement = cardTemplate.cloneNode(true); // Создаём переменную и клонируем в неё наш template
-//     cardElement.querySelector('.card__image').src = initialCards[lin].link; //Нужному элементу назначаем ссылку на картинку из массива
-//     cardElement.querySelector('.card__title').textContent = initialCards[nam].name; //Нужному элементу назначаем текстовый контент из массива
-//     cardOnline.append(cardElement); //Выводим склонированный шаблон с подготовленным контентом
-// }
+function cardRender (lin, nam) { //Объявляем функциюс аргументами
+    let cardElement = cardTemplate.cloneNode(true); // Создаём переменную и клонируем в неё наш template
+    cardElement.querySelector('.card__image').src = initialCards[lin].link; //Нужному элементу назначаем ссылку на картинку из массива
+    cardElement.querySelector('.card__title').textContent = initialCards[nam].name; //Нужному элементу назначаем текстовый контент из массива
+    cardOnline.append(cardElement); //Выводим склонированный шаблон с подготовленным контентом
+}
 
-// // cardRender (0, 0);
-// // cardRender (1, 1);
-// // cardRender (2, 2);
+// cardRender (0, 0);
+// cardRender (1, 1);
+// cardRender (2, 2);
 
 
-// initialCards.forEach(function (item, i) { // Запускаем цикл вывода шаблона с новыми параметрами
-//     cardRender (i, i);
-// });
+initialCards.forEach(function (item, i) { // Запускаем цикл вывода шаблона с новыми параметрами
+    cardRender (i, i);
+});
 
 
 
