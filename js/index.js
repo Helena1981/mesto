@@ -5,6 +5,9 @@ const closeCard = document.querySelector('.close_cardpopup'); //project5
 const popup = document.querySelector('.popup');
 const popupCard = document.querySelector('.popupcard'); //project5
 
+const cardTemplate = document.querySelector('#initItem').content; //Берём template
+const cardOnline = document.querySelector('.card__items'); //Берём элемент, внутрь которого будет вставлять код из template
+
 // Берём заголовок и подзаголовок на странице
 let pageName = document.querySelector('.profile__title').textContent;
 let pagejob = document.querySelector('.profile__subtitle').textContent;
@@ -36,6 +39,7 @@ openPopupCard.addEventListener('click', toggleCard); //project5
 closeCard.addEventListener('click', toggleCard); //project5
 
 const saveButton = document.querySelector('.form__button');
+
 // Записываем введенные значения на страницу
 function saveInf() {
     document.querySelector('.profile__title').textContent = inname.value;
@@ -43,8 +47,16 @@ function saveInf() {
     togglePopup();    
 }
 
+
+function handleLike(evt) {
+    evt.target.classList.toggle('card__heart_active');
+}
+
+// Добавление карточки на страницу пользователем
 function addCard() {     
-    let cardElement = cardTemplate.cloneNode(true);                           //project5
+    const cardElement = cardTemplate.cloneNode(true);                
+    const cardLikeButton = cardElement.querySelector('.card__heart');
+    cardLikeButton.addEventListener('click', (evt) => evt.target.classList.toggle('card__heart_active'));
     cardElement.querySelector('.card__image').src = addLink.value;
     cardElement.querySelector('.card__image').alt = addName.value;
     cardElement.querySelector('.card__title').textContent = addName.value; 
@@ -91,48 +103,24 @@ const initialCards = [
     }
 ];
 
-// ---------
-// Работающий код на одну карточку 
-// const cardTemplate = document.querySelector('#initItem').content;
-// const cardOnline = document.querySelector('.card__items');
-// let cardElement = cardTemplate.cloneNode(true);
-
-// cardElement.querySelector('.card__image').src = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg';
-// cardElement.querySelector('.card__title').textContent = 'Архыз';
-
-// cardOnline.append(cardElement);
-// ---------
 
 
 
-// Работающий код на все карточки
-const cardTemplate = document.querySelector('#initItem').content; //Берём template
-const cardOnline = document.querySelector('.card__items'); //Берём элемент, внутрь которого будет вставлять код из template
+//Выводим карточки из массива
 
-function cardRender (lin, nam) { //Объявляем функциюс аргументами
-    let cardElement = cardTemplate.cloneNode(true); // Создаём переменную и клонируем в неё наш template
+function cardRender (lin, nam) { //Объявляем функцию с аргументами
+    const cardElement = cardTemplate.cloneNode(true); // Создаём переменную и клонируем в неё наш template
+    const cardLikeButton = cardElement.querySelector('.card__heart');
+    cardLikeButton.addEventListener('click', (evt) => evt.target.classList.toggle('card__heart_active'));
     cardElement.querySelector('.card__image').src = initialCards[lin].link; //Нужному элементу назначаем ссылку на картинку из массива
     cardElement.querySelector('.card__image').alt = initialCards[nam].name; //Картинке alt такой же, как и имя
     cardElement.querySelector('.card__title').textContent = initialCards[nam].name; //Нужному элементу назначаем текстовый контент из массива
     cardOnline.append(cardElement); //Выводим склонированный шаблон с подготовленным контентом
+    
 }
 
-// cardRender (0, 0);
-// cardRender (1, 1);
-// cardRender (2, 2);
-
-
-initialCards.forEach(function (item, i) { // Запускаем цикл вывода шаблона с новыми параметрами
+// Запускаем цикл вывода шаблона с новыми параметрами
+initialCards.forEach(function (item, i) { 
     cardRender (i, i);
 });
 
-                                                                        //project5
-const likeButton = document.querySelector('.card__heart');       
-
-likeButton.addEventListener('click', function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle('card__heart_active');
- 
- });
-
- 
