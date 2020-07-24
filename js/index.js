@@ -1,28 +1,33 @@
 const openPopupButton = document.querySelector('.profile__pen');
-const openPopupCard = document.querySelector('.profile__button'); //project5
-const closePopupButton = document.querySelector('.popup__close');
-const closeCard = document.querySelector('.close_cardpopup'); //project5
-const popup = document.querySelector('.popup');
-const popupCard = document.querySelector('.popupcard'); //project5
+const openCardButton = document.querySelector('.profile__button'); //project5
 
-const cardTemplate = document.querySelector('#initItem').content; //Берём template
-const cardOnline = document.querySelector('.card__items'); //Берём элемент, внутрь которого будет вставлять код из template
+const popupEdit = document.querySelector('.popup');
+const popupCard = document.querySelector('.popupcard'); //project5
+const popupImage = document.querySelector('.popupimage'); //project5
+
+
+const editForm = popupEdit.querySelector('.popup__form');
+const addCardForm = popupCard.querySelector('.popup__form'); //project5
+
+const closePopupButton = popupEdit.querySelector('.popup__close');
+const closeCardButton = popupCard.querySelector('.popup__close'); //project5
 
 // Берём заголовок и подзаголовок на странице
 let pageName = document.querySelector('.profile__title').textContent;
 let pagejob = document.querySelector('.profile__subtitle').textContent;
 
 // Берём текст из полей ввода 
-let inname = document.querySelector('.form__input_name');
-let injob = document.querySelector('.form__input_job');
+const inname = editForm.querySelector('.form__input_name');
+const injob = editForm.querySelector('.form__input_job');
 
-let addName = document.querySelector('.form__card_name'); //project5
-let addLink = document.querySelector('.form__card_link'); //project5
+const placeInput = addCardForm.querySelector('.form__card_name'); //project5
+const urlInput = addCardForm.querySelector('.form__card_link'); //project5
 
+const imageModalTitle = popupImage.querySelector('.popup__title');
+const imageModalImg = popupImage.querySelector('.popup__image');
 
 function togglePopup() {
-    popup.classList.toggle('popup_opened');
-    // Устанавливаем атрибут value для полей ввода
+    popupEdit.classList.toggle('popup_opened');
     inname.setAttribute('value', pageName);
     injob.setAttribute('value', pagejob);
 }
@@ -35,8 +40,8 @@ function toggleCard() {                             //project5
 openPopupButton.addEventListener('click', togglePopup);
 closePopupButton.addEventListener('click', togglePopup);
 
-openPopupCard.addEventListener('click', toggleCard); //project5
-closeCard.addEventListener('click', toggleCard); //project5
+openCardButton.addEventListener('click', toggleCard); //project5
+closeCardButton.addEventListener('click', toggleCard); //project5
 
 const saveButton = document.querySelector('.form__button');
 
@@ -48,32 +53,23 @@ function saveInf() {
 }
 
 
-function handleLike(evt) {
-    evt.target.classList.toggle('card__heart_active');
-}
+function addCardSubmitHandler(evt) {
+    evt.preventDefault()
 
-// Добавление карточки на страницу пользователем
-function addCard() {     
-    const cardElement = cardTemplate.cloneNode(true);                
-    const cardLikeButton = cardElement.querySelector('.card__heart');
-    cardLikeButton.addEventListener('click', (evt) => evt.target.classList.toggle('card__heart_active'));
-    cardElement.querySelector('.card__image').src = addLink.value;
-    cardElement.querySelector('.card__image').alt = addName.value;
-    cardElement.querySelector('.card__title').textContent = addName.value; 
-    cardOnline.prepend(cardElement); 
-    toggleCard();    
-}
+    renderCard({name: placeInput.value, link: urlInput.value});
 
+    toggleCard();
+} 
 
-document.querySelector('.popup__form').addEventListener('submit', (event) => {
+editForm.addEventListener('submit', (event) => {
     event.preventDefault()
     saveInf();
 });
 
-document.querySelector('.popup_card').addEventListener('submit', (event) => {
-    event.preventDefault()
-    addCard();
-});
+addCardForm.addEventListener('submit', addCardSubmitHandler);
+
+
+
 
 
 const initialCards = [
@@ -106,21 +102,61 @@ const initialCards = [
 
 
 
-//Выводим карточки из массива
+// Лиза
+const cardTemplate = document.querySelector('#initItem').content.querySelector('.card__item');
+const list = document.querySelector('.card__items');
 
-function cardRender (lin, nam) { //Объявляем функцию с аргументами
-    const cardElement = cardTemplate.cloneNode(true); // Создаём переменную и клонируем в неё наш template
-    const cardLikeButton = cardElement.querySelector('.card__heart');
-    cardLikeButton.addEventListener('click', (evt) => evt.target.classList.toggle('card__heart_active'));
-    cardElement.querySelector('.card__image').src = initialCards[lin].link; //Нужному элементу назначаем ссылку на картинку из массива
-    cardElement.querySelector('.card__image').alt = initialCards[nam].name; //Картинке alt такой же, как и имя
-    cardElement.querySelector('.card__title').textContent = initialCards[nam].name; //Нужному элементу назначаем текстовый контент из массива
-    cardOnline.append(cardElement); //Выводим склонированный шаблон с подготовленным контентом
-    
+function handleLikeClick(evt) {
+    evt.target.classList.toggle('card__heart_active');
 }
 
-// Запускаем цикл вывода шаблона с новыми параметрами
-initialCards.forEach(function (item, i) { 
-    cardRender (i, i);
-});
+function handleDeleteClick(evt) {
+    evt.target.closest('.card__item').remove();
+}
+
+
+function handleImageClick(evt) {
+    imageModalTitle.textContent = evt.target.alt;
+    imageModalImg.src = evt.target.src;
+
+    console.log(imageModalTitle);
+    console.log(imageModalImg);
+}
+
+function createCard(data) {
+    const cardElement = cardTemplate.cloneNode(true);
+    const cardImage = cardElement.querySelector('.card__image');
+    const cardTtile = cardElement.querySelector('.card__title');
+    const cardLikeButton = cardElement.querySelector('.card__heart');
+    const cardDeleteButton = cardElement.querySelector('.card__delete');
+
+    cardLikeButton.addEventListener('click', (evt) => {
+        handleLikeClick(evt);
+    });
+
+    cardDeleteButton.addEventListener('click', (evt) => {
+        handleDeleteClick(evt);
+    });
+
+    cardImage.addEventListener('click', (evt) => {
+        handleImageClick(evt)
+    });
+
+    cardTtile.textContent = data.name;
+    cardImage.src = data.link;
+    cardImage.alt = data.name;
+
+    return cardElement;
+
+}
+
+function renderCard(data) {
+    list.prepend(createCard(data));
+}
+
+
+
+initialCards.forEach((data) => { 
+    renderCard(data)
+})
 
