@@ -115,6 +115,7 @@ function handleLikeClick(evt) {
     evt.target.classList.toggle('card__heart_active');
 }
 
+// Удаляет ближайший родительский элемент с нужным классом
 function handleDeleteClick(evt) {
     evt.target.closest('.card__item').remove();
 }
