@@ -10,7 +10,6 @@
 
 @media screen and (max-width: 617px) {
     .popup__modal {
-       
        width: calc(100% - 20px);
     }
 }

@@ -4,10 +4,15 @@
     height: 20px;
     border: 0;
     transition: .3s all ease;
-    
+    opacity: 0.5;
 }
 
 .card__heart:hover {
     opacity: .7;
     cursor: pointer;
+}
+
+.card__heart_active {
+    opacity: 1;
+    background: url(https://code.s3.yandex.net/web-code/dom/heart-filled.svg) center no-repeat;
 }
