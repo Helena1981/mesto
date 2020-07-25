@@ -1,16 +1,17 @@
 const openPopupButton = document.querySelector('.profile__pen');
-const openCardButton = document.querySelector('.profile__button'); //project5
+const openCardButton = document.querySelector('.profile__button'); 
 
 const popupEdit = document.querySelector('.popup');
-const popupCard = document.querySelector('.popupcard'); //project5
-const popupImage = document.querySelector('.popupimage'); //project5
+const popupCard = document.querySelector('.popupcard'); 
+const popupImage = document.querySelector('.popupimage'); 
 
 
 const editForm = popupEdit.querySelector('.popup__form');
-const addCardForm = popupCard.querySelector('.popup__form'); //project5
+const addCardForm = popupCard.querySelector('.popup__form'); 
 
 const closePopupButton = popupEdit.querySelector('.popup__close');
-const closeCardButton = popupCard.querySelector('.popup__close'); //project5
+const closeCardButton = popupCard.querySelector('.popup__close'); 
+const closeImageButton = popupImage.querySelector('.popup__close'); 
 
 // Берём заголовок и подзаголовок на странице
 let pageName = document.querySelector('.profile__title').textContent;
@@ -20,28 +21,38 @@ let pagejob = document.querySelector('.profile__subtitle').textContent;
 const inname = editForm.querySelector('.form__input_name');
 const injob = editForm.querySelector('.form__input_job');
 
-const placeInput = addCardForm.querySelector('.form__card_name'); //project5
-const urlInput = addCardForm.querySelector('.form__card_link'); //project5
+const placeInput = addCardForm.querySelector('.form__card_name'); 
+const urlInput = addCardForm.querySelector('.form__card_link'); 
 
-const imageModalTitle = popupImage.querySelector('.popup__title');
-const imageModalImg = popupImage.querySelector('.popup__image');
+const imageModalTitle = popupImage.querySelector('.popupimage__title'); 
+const imageModalImg = popupImage.querySelector('.popupimage__image'); 
 
-function togglePopup() {
-    popupEdit.classList.toggle('popup_opened');
+function togglePopup(winPopup) {
+    winPopup.classList.toggle('popup_opened');
     inname.setAttribute('value', pageName);
     injob.setAttribute('value', pagejob);
 }
 
-function toggleCard() {                             //project5
-    popupCard.classList.toggle('popup_opened');
-   
-}
+openPopupButton.addEventListener('click', () => {
+    togglePopup(popupEdit)
+});
 
-openPopupButton.addEventListener('click', togglePopup);
-closePopupButton.addEventListener('click', togglePopup);
+openCardButton.addEventListener('click', () => {
+    togglePopup(popupCard)
+}); 
 
-openCardButton.addEventListener('click', toggleCard); //project5
-closeCardButton.addEventListener('click', toggleCard); //project5
+closePopupButton.addEventListener('click', () => {
+    togglePopup(popupEdit)
+});
+
+closeImageButton.addEventListener('click', () => {
+    togglePopup(popupImage)
+});
+
+closeCardButton.addEventListener('click', () => {
+    togglePopup(popupCard)
+});
+
 
 const saveButton = document.querySelector('.form__button');
 
@@ -49,16 +60,14 @@ const saveButton = document.querySelector('.form__button');
 function saveInf() {
     document.querySelector('.profile__title').textContent = inname.value;
     document.querySelector('.profile__subtitle').textContent = injob.value;
-    togglePopup();    
+    togglePopup(popupEdit);    
 }
 
 
 function addCardSubmitHandler(evt) {
     evt.preventDefault()
-
     renderCard({name: placeInput.value, link: urlInput.value});
-
-    toggleCard();
+    togglePopup(popupCard);
 } 
 
 editForm.addEventListener('submit', (event) => {
@@ -67,8 +76,6 @@ editForm.addEventListener('submit', (event) => {
 });
 
 addCardForm.addEventListener('submit', addCardSubmitHandler);
-
-
 
 
 
@@ -99,13 +106,11 @@ const initialCards = [
     }
 ];
 
-
-
-
-// Лиза
+// Создаём Template
 const cardTemplate = document.querySelector('#initItem').content.querySelector('.card__item');
 const list = document.querySelector('.card__items');
 
+// Функция определяет, на какой элемент кликнули и тут же меняет стиль этого элемента
 function handleLikeClick(evt) {
     evt.target.classList.toggle('card__heart_active');
 }
@@ -114,13 +119,11 @@ function handleDeleteClick(evt) {
     evt.target.closest('.card__item').remove();
 }
 
-
 function handleImageClick(evt) {
     imageModalTitle.textContent = evt.target.alt;
     imageModalImg.src = evt.target.src;
-
-    console.log(imageModalTitle);
-    console.log(imageModalImg);
+    imageModalImg.alt = evt.target.alt;
+    togglePopup(popupImage);
 }
 
 function createCard(data) {
@@ -145,16 +148,12 @@ function createCard(data) {
     cardTtile.textContent = data.name;
     cardImage.src = data.link;
     cardImage.alt = data.name;
-
     return cardElement;
-
 }
 
 function renderCard(data) {
     list.prepend(createCard(data));
 }
-
-
 
 initialCards.forEach((data) => { 
     renderCard(data)

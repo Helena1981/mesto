@@ -1,0 +1,10 @@
+.popupimage__modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: calc(100vw - 70px);
+    background: transparent;
+    border: 0;
+    padding: 0;
+    position: relative;
+}

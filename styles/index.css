@@ -8,4 +8,5 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/page-wrapper/page-wrapper.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popupimage/popupimage.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
