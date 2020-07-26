@@ -1,0 +1,23 @@
+.popupimage__close {
+    position: absolute;
+    top: -34px;
+    right: -36px;
+    transition: .3s all ease;
+    background: url(../../../images/crest.svg) no-repeat;
+    width: 35px;
+    height: 35px;
+    border: 0;
+}
+
+.popupimage__close:hover {
+    opacity: 0.6;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+
+ @media screen and (max-width: 617px) {
+    .popupimage__close {
+        top: -37px;
+        right: 0;
+    }
+}

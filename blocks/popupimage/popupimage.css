@@ -1,6 +1,7 @@
 @import url(./__image/popupimage__image.css);
 @import url(./__modal/popupimage__modal.css);
 @import url(./__title/popupimage__title.css);
+@import url(./__close/popupimage__close.css);
 
 .popupimage {
     background-color:rgba(0, 0, 0, 0.8);

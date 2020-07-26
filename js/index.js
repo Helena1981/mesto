@@ -1,110 +1,71 @@
 const openPopupButton = document.querySelector('.profile__pen');
-const openCardButton = document.querySelector('.profile__button'); 
+const openCardButton = document.querySelector('.profile__button');
 
 const popupEdit = document.querySelector('.popup');
-const popupCard = document.querySelector('.popupcard'); 
-const popupImage = document.querySelector('.popupimage'); 
+const popupCard = document.querySelector('.popupcard');
+const popupImage = document.querySelector('.popupimage');
 
 
 const editForm = popupEdit.querySelector('.popup__form');
-const addCardForm = popupCard.querySelector('.popup__form'); 
+const addCardForm = popupCard.querySelector('.popup__form');
 
 const closePopupButton = popupEdit.querySelector('.popup__close');
-const closeCardButton = popupCard.querySelector('.popup__close'); 
-const closeImageButton = popupImage.querySelector('.popup__close'); 
+const closeCardButton = popupCard.querySelector('.popup__close');
+const closeImageButton = popupImage.querySelector('.popupimage__close');
 
 // Берём заголовок и подзаголовок на странице
-let pageName = document.querySelector('.profile__title').textContent;
-let pagejob = document.querySelector('.profile__subtitle').textContent;
+let pageName = document.querySelector('.profile__title');
+let pageJob = document.querySelector('.profile__subtitle');
 
 // Берём текст из полей ввода 
 const inname = editForm.querySelector('.form__input_name');
 const injob = editForm.querySelector('.form__input_job');
 
-const placeInput = addCardForm.querySelector('.form__card_name'); 
-const urlInput = addCardForm.querySelector('.form__card_link'); 
+const placeInput = addCardForm.querySelector('.form__card_name');
+const urlInput = addCardForm.querySelector('.form__card_link');
 
-const imageModalTitle = popupImage.querySelector('.popupimage__title'); 
-const imageModalImg = popupImage.querySelector('.popupimage__image'); 
+const imageModalTitle = popupImage.querySelector('.popupimage__title');
+const imageModalImg = popupImage.querySelector('.popupimage__image');
 
+// Тоггл для всех модалок
 function togglePopup(winPopup) {
     winPopup.classList.toggle('popup_opened');
-    inname.setAttribute('value', pageName);
-    injob.setAttribute('value', pagejob);
+
 }
-
+// Открываем 1-ю модалку, значения полей пробрасываем со статичного HTML
 openPopupButton.addEventListener('click', () => {
-    togglePopup(popupEdit)
+    inname.setAttribute('value', pageName.textContent);
+    injob.setAttribute('value', pageJob.textContent);
+    togglePopup(popupEdit);
+
 });
 
-openCardButton.addEventListener('click', () => {
-    togglePopup(popupCard)
-}); 
-
-closePopupButton.addEventListener('click', () => {
-    togglePopup(popupEdit)
-});
-
-closeImageButton.addEventListener('click', () => {
-    togglePopup(popupImage)
-});
-
-closeCardButton.addEventListener('click', () => {
-    togglePopup(popupCard)
-});
-
-
-const saveButton = document.querySelector('.form__button');
+openCardButton.addEventListener('click', () => togglePopup(popupCard));
+closePopupButton.addEventListener('click', () => togglePopup(popupEdit));
+closeImageButton.addEventListener('click', () => togglePopup(popupImage));
+closeCardButton.addEventListener('click', () => togglePopup(popupCard));
 
 // Записываем введенные значения на страницу
-function saveInf() {
-    document.querySelector('.profile__title').textContent = inname.value;
-    document.querySelector('.profile__subtitle').textContent = injob.value;
-    togglePopup(popupEdit);    
+function saveUserData() {
+    pageName.textContent = inname.value;
+    pageJob.textContent = injob.value;
 }
 
 
 function addCardSubmitHandler(evt) {
     evt.preventDefault()
-    renderCard({name: placeInput.value, link: urlInput.value});
+    renderCard({ name: placeInput.value, link: urlInput.value });
     togglePopup(popupCard);
-} 
+}
 
 editForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-    saveInf();
+    event.preventDefault();
+    saveUserData();
+    togglePopup(popupEdit);
 });
 
 addCardForm.addEventListener('submit', addCardSubmitHandler);
 
-
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 // Создаём Template
 const cardTemplate = document.querySelector('#initItem').content.querySelector('.card__item');
@@ -130,13 +91,11 @@ function handleImageClick(evt) {
 function createCard(data) {
     const cardElement = cardTemplate.cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
-    const cardTtile = cardElement.querySelector('.card__title');
+    const cardTitle = cardElement.querySelector('.card__title');
     const cardLikeButton = cardElement.querySelector('.card__heart');
     const cardDeleteButton = cardElement.querySelector('.card__delete');
 
-    cardLikeButton.addEventListener('click', (evt) => {
-        handleLikeClick(evt);
-    });
+    cardLikeButton.addEventListener('click', handleLikeClick);
 
     cardDeleteButton.addEventListener('click', (evt) => {
         handleDeleteClick(evt);
@@ -146,7 +105,7 @@ function createCard(data) {
         handleImageClick(evt)
     });
 
-    cardTtile.textContent = data.name;
+    cardTitle.textContent = data.name;
     cardImage.src = data.link;
     cardImage.alt = data.name;
     return cardElement;
@@ -156,7 +115,7 @@ function renderCard(data) {
     list.prepend(createCard(data));
 }
 
-initialCards.forEach((data) => { 
-    renderCard(data)
+initialCards.forEach((data) => {
+    renderCard(data);
 })
 
