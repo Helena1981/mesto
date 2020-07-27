@@ -6,8 +6,8 @@ const popupCard = document.querySelector('.popupcard');
 const popupImage = document.querySelector('.popupimage');
 
 
-const editForm = popupEdit.querySelector('.popup__form');
-const addCardForm = popupCard.querySelector('.popup__form');
+const editForm = popupEdit.querySelector('.form');
+const addCardForm = popupCard.querySelector('.form');
 
 const closePopupButton = popupEdit.querySelector('.popup__close');
 const closeCardButton = popupCard.querySelector('.popup__close');
