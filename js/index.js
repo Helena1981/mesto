@@ -14,12 +14,12 @@ const closeCardButton = popupCard.querySelector('.popup__close');
 const closeImageButton = popupImage.querySelector('.popupimage__close');
 
 // Берём заголовок и подзаголовок на странице
-let pageName = document.querySelector('.profile__title');
-let pageJob = document.querySelector('.profile__subtitle');
+const pageName = document.querySelector('.profile__title');
+const pageJob = document.querySelector('.profile__subtitle');
 
 // Берём текст из полей ввода 
-const inname = editForm.querySelector('.form__input_name');
-const injob = editForm.querySelector('.form__input_job');
+const inputName = editForm.querySelector('.form__input_name');
+const inputJob = editForm.querySelector('.form__input_job');
 
 const placeInput = addCardForm.querySelector('.form__card_name');
 const urlInput = addCardForm.querySelector('.form__card_link');
@@ -34,8 +34,8 @@ function togglePopup(winPopup) {
 }
 // Открываем 1-ю модалку, значения полей пробрасываем со статичного HTML
 openPopupButton.addEventListener('click', () => {
-    inname.setAttribute('value', pageName.textContent);
-    injob.setAttribute('value', pageJob.textContent);
+    inputName.setAttribute('value', pageName.textContent);
+    inputJob.setAttribute('value', pageJob.textContent);
     togglePopup(popupEdit);
 
 });
@@ -47,13 +47,13 @@ closeCardButton.addEventListener('click', () => togglePopup(popupCard));
 
 // Записываем введенные значения на страницу
 function saveUserData() {
-    pageName.textContent = inname.value;
-    pageJob.textContent = injob.value;
+    pageName.textContent = inputName.value;
+    pageJob.textContent = inputJob.value;
 }
 
 
 function addCardSubmitHandler(evt) {
-    evt.preventDefault()
+    evt.preventDefault();
     renderCard({ name: placeInput.value, link: urlInput.value });
     togglePopup(popupCard);
 }
@@ -102,7 +102,7 @@ function createCard(data) {
     });
 
     cardImage.addEventListener('click', (evt) => {
-        handleImageClick(evt)
+        handleImageClick(evt);
     });
 
     cardTitle.textContent = data.name;
@@ -117,5 +117,5 @@ function renderCard(data) {
 
 initialCards.forEach((data) => {
     renderCard(data);
-})
+});
 
