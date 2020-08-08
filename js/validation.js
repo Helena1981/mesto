@@ -70,7 +70,7 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, in
   });
 };
 
-
+// Главная функция
 function enableValidation({formSelector, ...settings},) {
   const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((formElement) => {

@@ -67,7 +67,7 @@ closePopupButton.addEventListener('click', () => togglePopup(popupEdit));
 closeImageButton.addEventListener('click', () => togglePopup(popupImage));
 closeCardButton.addEventListener('click', () => togglePopup(popupCard));
 
-// Слушатели для закрвтия по Overlay
+// Слушатели для закрытия по Overlay
 popupEdit.addEventListener('click', closePopupOverlay);
 popupCard.addEventListener('click', closePopupOverlay);
 popupImage.addEventListener('click', closePopupOverlay);
