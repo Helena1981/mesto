@@ -8,7 +8,7 @@ const enableValidationSettings = {
 };
 
 
-// Функция отображения текста ошибки и красного border
+// Добавляем невалидное состояние полей
 const showInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
   console.log(inputElement.name);
   
@@ -18,7 +18,7 @@ const showInputError = (formElement, inputElement, inputErrorClass, errorClass) 
   errorElement.classList.add(errorClass);
 };
 
-// Скрываем ошибку
+// Добавляем валидное состояние полей
 const hideInputError = (formElement, inputElement, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
   inputElement.classList.remove(inputErrorClass);
@@ -54,6 +54,7 @@ const toggleButtonState = (inputs, buttonSubmit, inactiveButtonClass) => {
   }
 }
 
+// Вешаем обработчики на все поля
 const setEventListeners = (formElement, {inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) => {
 
   const inputs = Array.from(formElement.querySelectorAll(inputSelector));
