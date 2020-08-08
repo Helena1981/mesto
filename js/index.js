@@ -27,11 +27,33 @@ const urlInput = addCardForm.querySelector('.form__card_link');
 const imageModalTitle = popupImage.querySelector('.popupimage__title');
 const imageModalImg = popupImage.querySelector('.popupimage__image');
 
+
+
+
+// Закрытие модалки эскейпом
+
+function closePopupEsc(event) {
+    if (event.keyCode === 27) {
+        togglePopup(document.querySelector('.popup_opened'));
+    }
+  }
+
+// Закрытие модалки на overlay
+
+function closePopupOverlay(event) {
+  if (event.target.classList.contains('popup')) {
+    togglePopup(event.target);
+  }
+}
+
+
 // Тоггл для всех модалок
 function togglePopup(winPopup) {
     winPopup.classList.toggle('popup_opened');
-
+    document.addEventListener('keydown', closePopupEsc);
 }
+
+
 // Открываем 1-ю модалку, значения полей пробрасываем со статичного HTML
 openPopupButton.addEventListener('click', () => {
     inputName.setAttribute('value', pageName.textContent);
@@ -44,6 +66,11 @@ openCardButton.addEventListener('click', () => togglePopup(popupCard));
 closePopupButton.addEventListener('click', () => togglePopup(popupEdit));
 closeImageButton.addEventListener('click', () => togglePopup(popupImage));
 closeCardButton.addEventListener('click', () => togglePopup(popupCard));
+
+// Слушатели для закрытия по Overlay
+popupEdit.addEventListener('click', closePopupOverlay);
+popupCard.addEventListener('click', closePopupOverlay);
+popupImage.addEventListener('click', closePopupOverlay);
 
 // Записываем введенные значения на страницу
 function saveUserData() {
