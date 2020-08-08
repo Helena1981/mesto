@@ -32,6 +32,9 @@ function togglePopup(winPopup) {
     winPopup.classList.toggle('popup_opened');
 
 }
+
+
+
 // Открываем 1-ю модалку, значения полей пробрасываем со статичного HTML
 openPopupButton.addEventListener('click', () => {
     inputName.setAttribute('value', pageName.textContent);
