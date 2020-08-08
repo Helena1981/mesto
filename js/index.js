@@ -35,7 +35,7 @@ const imageModalImg = popupImage.querySelector('.popupimage__image');
 const ESCAPE_KEY_CODE = 'Escape'; 
 function closePopupEsc(event) {
     if (event.key === ESCAPE_KEY_CODE) {
-        togglePopup(document.querySelector('.popup_opened'));
+        closePopup(document.querySelector('.popup_opened'));
     }
   }
 
@@ -43,15 +43,20 @@ function closePopupEsc(event) {
 
 function closePopupOverlay(event) {
   if (event.target.classList.contains('popup')) {
-    togglePopup(event.target);
+    closePopup(event.target);
   }
 }
 
-
-// Тоггл для всех модалок
-function togglePopup(winPopup) {
-    winPopup.classList.toggle('popup_opened');
+// Открытие модалки
+function openPopup(winPopup) {
+    winPopup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEsc);
+}
+
+// Закрытие модалки
+function closePopup(winPopup) {
+    winPopup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
 }
 
 
@@ -59,14 +64,14 @@ function togglePopup(winPopup) {
 openPopupButton.addEventListener('click', () => {
     inputName.setAttribute('value', pageName.textContent);
     inputJob.setAttribute('value', pageJob.textContent);
-    togglePopup(popupEdit);
+    openPopup(popupEdit);
 
 });
 
-openCardButton.addEventListener('click', () => togglePopup(popupCard));
-closePopupButton.addEventListener('click', () => togglePopup(popupEdit));
-closeImageButton.addEventListener('click', () => togglePopup(popupImage));
-closeCardButton.addEventListener('click', () => togglePopup(popupCard));
+openCardButton.addEventListener('click', () => openPopup(popupCard));
+closePopupButton.addEventListener('click', () => closePopup(popupEdit));
+closeImageButton.addEventListener('click', () => closePopup(popupImage));
+closeCardButton.addEventListener('click', () => closePopup(popupCard));
 
 // Слушатели для закрытия по Overlay
 popupEdit.addEventListener('mousedown', closePopupOverlay);
@@ -83,13 +88,13 @@ function saveUserData() {
 function addCardSubmitHandler(evt) {
     evt.preventDefault();
     renderCard({ name: placeInput.value, link: urlInput.value });
-    togglePopup(popupCard);
+    closePopup(popupCard);
 }
 
 editForm.addEventListener('submit', (event) => {
     event.preventDefault();
     saveUserData();
-    togglePopup(popupEdit);
+    closePopup(popupEdit);
 });
 
 addCardForm.addEventListener('submit', addCardSubmitHandler);
@@ -113,7 +118,7 @@ function handleImageClick(evt) {
     imageModalTitle.textContent = evt.target.alt;
     imageModalImg.src = evt.target.src;
     imageModalImg.alt = evt.target.alt;
-    togglePopup(popupImage);
+    openPopup(popupImage);
 }
 
 function createCard(data) {
