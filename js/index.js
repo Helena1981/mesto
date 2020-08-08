@@ -27,7 +27,7 @@ const urlInput = addCardForm.querySelector('.form__card_link');
 const imageModalTitle = popupImage.querySelector('.popupimage__title');
 const imageModalImg = popupImage.querySelector('.popupimage__image');
 
-
+//editForm.addEventListener('reset', hideInputError);
 
 
 // Закрытие модалки эскейпом
@@ -62,6 +62,7 @@ function closePopup(winPopup) {
 
 // Открываем 1-ю модалку, значения полей пробрасываем со статичного HTML
 openPopupButton.addEventListener('click', () => {
+    
     inputName.setAttribute('value', pageName.textContent);
     inputJob.setAttribute('value', pageJob.textContent);
     openPopup(popupEdit);
