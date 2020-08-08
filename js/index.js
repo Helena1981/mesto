@@ -32,8 +32,9 @@ const imageModalImg = popupImage.querySelector('.popupimage__image');
 
 // Закрытие модалки эскейпом
 
+const ESCAPE_KEY_CODE = 'Escape'; 
 function closePopupEsc(event) {
-    if (event.keyCode === 27) {
+    if (event.key === ESCAPE_KEY_CODE) {
         togglePopup(document.querySelector('.popup_opened'));
     }
   }
@@ -68,9 +69,9 @@ closeImageButton.addEventListener('click', () => togglePopup(popupImage));
 closeCardButton.addEventListener('click', () => togglePopup(popupCard));
 
 // Слушатели для закрытия по Overlay
-popupEdit.addEventListener('click', closePopupOverlay);
-popupCard.addEventListener('click', closePopupOverlay);
-popupImage.addEventListener('click', closePopupOverlay);
+popupEdit.addEventListener('mousedown', closePopupOverlay);
+popupCard.addEventListener('mousedown', closePopupOverlay);
+popupImage.addEventListener('mousedown', closePopupOverlay);
 
 // Записываем введенные значения на страницу
 function saveUserData() {
@@ -124,13 +125,9 @@ function createCard(data) {
 
     cardLikeButton.addEventListener('click', handleLikeClick);
 
-    cardDeleteButton.addEventListener('click', (evt) => {
-        handleDeleteClick(evt);
-    });
+    cardDeleteButton.addEventListener('click', handleDeleteClick);
 
-    cardImage.addEventListener('click', (evt) => {
-        handleImageClick(evt);
-    });
+    cardImage.addEventListener('click', handleImageClick);
 
     cardTitle.textContent = data.name;
     cardImage.src = data.link;
@@ -145,4 +142,6 @@ function renderCard(data) {
 initialCards.forEach((data) => {
     renderCard(data);
 });
+
+
 
