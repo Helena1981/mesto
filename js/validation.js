@@ -91,4 +91,3 @@ function enableValidation({
 
 enableValidation(enableValidationSettings);
 
-//editForm.addEventListener('reset', hideInputError);
